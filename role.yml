@@ -1,0 +1,13 @@
+---
+
+- name: Test Opsview Client
+  hosts: all
+  roles:
+    - ""
+  vars_files:
+    - "defaults/main.yml"
+    - "vars/main.yml"
+  tasks:
+    - include: "tasks/main.yml"
+  handlers:
+    - include: "handlers/main.yml"

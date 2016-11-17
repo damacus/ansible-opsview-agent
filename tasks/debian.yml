@@ -1,0 +1,15 @@
+- name: Add Opsview APT repository
+  apt_repository:
+    filename: opsview
+    repo: "deb {{apt_base_url}} {{ansible_distribution_release}} main"
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Add apt-key
+  apt_key: "file=files/repo_key.asc state=present"
+  when: ansible_os_family == "Debian"
+
+- name: Update Yum repository
+  shell: "apt-get update"
+  when: ansible_os_family == "Debian"

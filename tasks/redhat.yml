@@ -1,0 +1,32 @@
+- name: Add EPEL repository
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+  when: ansible_os_family == "RedHat"
+
+- name: Set platform lowercase
+  set_fact:
+    distribution: "centos"
+  when: ansible_distribution == "CentOS"
+  set_fact:
+    distribution: "rhel"
+  when: ansible_distribution == "RedHat"
+
+- name: Add Opsview Yum repository
+  yum_repository:
+    name: opsview
+    description: Opsview Core $basearch
+    baseurl: "https://downloads.opsview.com/k/{{repository_key}}/opsview-commercial/{{version_linux}}/yum/{{distribution}}/$releasever/$basearch"
+    enabled: yes
+    gpgcheck: no
+  when: ansible_os_family == "RedHat"
+
+- name: Install libmcrypt
+  package: name=libmcrypt
+  when: ansible_os_family == "RedHat"
+
+- name: Set destiniation for config file
+  set_fact:
+    conf_dest: "/usr/local/nagios/etc"
+  when: ansible_os_family == "RedHat"

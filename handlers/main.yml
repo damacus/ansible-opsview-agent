@@ -1,0 +1,4 @@
+---
+# handlers file for opsview-client
+- name: Add Opsview APT repository
+  shell: "apt-get update"

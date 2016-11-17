@@ -1,0 +1,27 @@
+---
+# defaults file for opsview-client
+
+repository_key: "188bdf4bb9e722990bd89a55168676fed08128e4"
+# repository_key: "<%= ENV['OPSVIEW_REPO_KEY']%>"
+version: "22-06-15-2110"
+version_linux: "latest"
+yum_base_url: "https://downloads.opsview.com/k/{{repository_key}}/opsview-commercial/{{version_linux}}/yum/{{distribution}}/$releasever/$basearch"
+apt_base_url: "https://downloads.opsview.com/k/{{repository_key}}/opsview-commercial/{{version_linux}}/apt"
+windows_download_url: "https://opsview-agents.s3.amazonaws.com/Windows/Opsview_Windows_Agent_x64_{{version}}.msi"
+distribution: "centos"
+config_dir: "/usr/local/nagios/etc"
+
+log_facility:
+pid_file:
+server_port:
+server_address:
+nrpe_user: "nagios"
+nrpe_group: "nagios"
+allowed_hosts: "127.0.0.1"
+dont_blame_nrpe: "0"
+agent_debug: "0"
+command_timeout: "60"
+connection_timeout: "300"
+allow_weak_random_seed: "1"
+include_config_dir: "{{config_dir}}/nrpe_local"
+default_commands: true

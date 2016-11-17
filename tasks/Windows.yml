@@ -1,0 +1,10 @@
+# Windows Section
+- name: Install Windows Opsview Client
+  win_package:
+    path: "{{ windows_download_url }}"
+
+- template:
+    dest: "C:\\Program Files\\Opsview Agent\\NSC.ini"
+    group: Administrators
+    owner: Administrator
+    src: templates/NSC.j2
